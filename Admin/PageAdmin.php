@@ -353,21 +353,21 @@ class PageAdmin extends AbstractAdmin
         if ($this->hasSubject() && !$this->getSubject()->isInternal()) {
             $formMapper
                 ->with('form_page.group_main_label')
-                    ->add('type', 'sonata_page_type_choice', array('required' => false))
+                    ->add('type', 'Sonata\PageBundle\Form\Type\PageTypeChoiceType', array('required' => false))
                 ->end()
             ;
         }
 
         $formMapper
             ->with('form_page.group_main_label')
-                ->add('templateCode', 'sonata_page_template', array('required' => true))
+                ->add('templateCode', 'Sonata\PageBundle\Form\Type\TemplateChoiceType', array('required' => true))
             ->end()
         ;
 
         if (!$this->getSubject() || ($this->getSubject() && $this->getSubject()->getParent()) || ($this->getSubject() && !$this->getSubject()->getId())) {
             $formMapper
                 ->with('form_page.group_main_label')
-                    ->add('parent', 'sonata_page_selector', array(
+                    ->add('parent', 'Sonata\PageBundle\Form\Type\PageSelectorType', array(
                         'page' => $this->getSubject() ?: null,
                         'site' => $this->getSubject() ? $this->getSubject()->getSite() : null,
                         'model_manager' => $this->getModelManager(),
@@ -388,7 +388,7 @@ class PageAdmin extends AbstractAdmin
             $formMapper
                 ->with('form_page.group_main_label')
                     ->add('pageAlias', null, array('required' => false))
-                    ->add('target', 'sonata_page_selector', array(
+                    ->add('target', 'Sonata\PageBundle\Form\Type\PageSelectorType', array(
                         'page' => $this->getSubject() ?: null,
                         'site' => $this->getSubject() ? $this->getSubject()->getSite() : null,
                         'model_manager' => $this->getModelManager(),
