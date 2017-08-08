@@ -586,7 +586,7 @@
                         'value': !enabled
                     },
                     success: function (resp) {
-                        if (resp.status && resp.status === 'OK') {
+                        if (resp) {
                             $childBlock.attr('data-block-enabled', enabled ? "0" : "1");
                             enabled = !enabled;
                             $switchButton.toggleClass('bg-yellow bg-green');
